@@ -12,8 +12,8 @@ Column consistency checks were performed to ensure that there would not be two c
 
 The `len()` method was then utilised to ensure each season had 380 rows (The number of games in a premier league season).
 
+![Screenshot: Row checks](images/row_checks.png) 
 
-
-
-![Histogram](images/histogram-example-2.png) 
+### Building Team centric table
+The dataframe was then transfomred into a team-centric format, creating two dataframes using `pd.DataFrame` one for home and one for away. A dictionary was used to map points (3 for a win , 1 for a draw and 0 for a loss) and columns were renamed to reduce ambguity.
 
