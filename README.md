@@ -47,5 +47,17 @@ mid_results = mid_results.merge(form_df, on=["Season","team"], how="left")
 ```
 The data was then ready for EDA.
 ## EDA and Feature Selection
+Histogram plots were used to assess the distribution of mid-season features and ensure their validity.
 
+![Screenshot: Histograms](images/Histograms.png) 
+
+Whilst a correlation barplot was used to assess which features most strongly correlated with final points. Correlation between features was also assessed to reduce the implications of multicollinearity and remove redundant features that  would have let to overfitting.
+
+![Screenshot: correlation_plot](images/correlation_plot.png) 
+
+This lead to the selection of the final machine learning ready model dataframe:
+
+**Features:** **points_mid, goal_diff_mid, shots_target_mid, goals_against_mid, form_index**.
+
+**Target Variable:** **Final Points**
 
