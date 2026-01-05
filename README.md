@@ -61,3 +61,24 @@ This lead to the selection of the final machine learning ready model dataframe:
 
 **Target Variable:** **Final Points**
 
+![Screenshot: feature_selection](images/feature_selection.png) 
+
+
+## Machine Learning
+
+### Train and test split.
+The model was then split using sci-kitlearn. Of the 200 rows (10 seasons 20 teams), **80%  was for training and 20% for testing**
+
+```python
+#Splitting into X and Y (features and target)
+x = model_df[feature_cols]
+y = model_df[target_col]
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+#train test split
+x_train, x_test, y_train, y_test = train_test_split( x, y, test_size=0.2, random_state=1234)
+print("Train size:", x_train.shape[0], "rows")
+print("Test size:", x_test.shape[0], "rows")
+```
+
