@@ -55,7 +55,7 @@ Whilst a correlation barplot was used to assess which features most strongly cor
 
 ![Screenshot: correlation_plot](images/correlation_plot.png) 
 
-This lead to the selection of the final machine learning ready model dataframe:
+### This lead to the selection of the final machine learning ready model dataframe:
 
 **Features:** **points_mid, goal_diff_mid, shots_target_mid, goals_against_mid, form_index**.
 
@@ -81,4 +81,52 @@ x_train, x_test, y_train, y_test = train_test_split( x, y, test_size=0.2, random
 print("Train size:", x_train.shape[0], "rows")
 print("Test size:", x_test.shape[0], "rows")
 ```
+### Fitting on training data
+```python
+#Creating and fitting the model
+lin_reg = LinearRegression()
+lin_reg.fit(x_train, y_train)
+
+print("\nLinear Regression model fitted.")
+```
+
+### Predicting final points and obtaining key metrics
+The following metrics were used to assess model performance:
+**Adjusted R-squared:** Measures how much of the variance in final points is explained by the model and penalises the inclusion of unecessary variables.
+
+**Root Mean Squared Error**: Answers on average how many points is the models prediction wrong by?
+
+**Mean absolute error**: Measures the absolute difference between predicted and final points. A key difference to RMSE is that it treats differences equally, meaning its not as influence by outliers.
+
+
+```python
+#Predictions
+y_train_pred = lin_reg.predict(x_train)
+y_test_pred = lin_reg.predict(x_test)
+
+#Rsquared Score
+r2_train = r2_score(y_train, y_train_pred)
+r2_test = r2_score(y_test, y_test_pred)
+
+# Errors
+mae_test = mean_absolute_error(y_test, y_test_pred)
+rmse_test = np.sqrt(mean_squared_error(y_test, y_test_pred))
+
+print(f"Training R-Squared: {r2_train:.3f}")
+print(f"Test R-Squared:     {r2_test:.3f}")
+print(f"Test MAE:    {mae_test:.2f} points")
+print(f"Test RMSE:   {rmse_test:.2f} points")
+```
+
+### Obtaining Coefficients
+Regression coefficients were calculated as they allow model interpretation of how each mid-season feature impacts final points.
+```python
+coef_df = pd.DataFrame({
+    "feature": feature_cols,
+    "coefficient": lin_reg.coef_
+}).sort_values(by="coefficient", ascending=False)
+```
+
+
+## Results
 
