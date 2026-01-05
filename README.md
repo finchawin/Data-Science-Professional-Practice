@@ -16,4 +16,36 @@ The `len()` method was then utilised to ensure each season had 380 rows (The num
 
 ### Building Team centric table
 The dataframe was then transfomred into a team-centric format, creating two dataframes using `pd.DataFrame` one for home and one for away. A dictionary was used to map points (3 for a win , 1 for a draw and 0 for a loss) and columns were renamed to reduce ambguity.
+![Screenshot: Team centric](images/team_centric.png) 
+
+Match numbers were then assigned so the data could be filtered to 19 matches played (midseason) using a `pd.groupby().cumcount() +1`.
+The dataframe was then filtered to 19 matches played and midseason statistics were calculated using a `pd.groupby().agg('sum')`. Sanity checks were conducted to ensure there were 38 games per team per season.
+![Screenshot: filtering to 19_mp](images/filtering_19.png) 
+![Screenshot: Group by](images/group_by.png) 
+
+### Feature engineering
+Additional features were engineered such as goal difference (Goals Scored - Goals Conceded) and a form index which calculated a teams form on a scale of 0-1 based off of its last 5 fixtures 
+
+```python
+# filter to first half of the season
+mid_matches = team_match_long[team_match_long["match_number"] <= 19].copy()
+
+# define function to calculate form (sum of last 5 games points / 15)
+def form_last5(x):
+    last5 = x.sort_values("match_number").tail(5)
+    return last5["points"].sum() / 15  
+
+# apply per Season–Team group
+form_df = (
+    mid_matches.groupby(["Season","team"])
+               .apply(form_last5)
+               .reset_index(name="form_index_mid")
+)
+
+# merge with mid_results 
+mid_results = mid_results.merge(form_df, on=["Season","team"], how="left")
+```
+The data was then ready for EDA.
+## EDA and Feature Selection
+
 
