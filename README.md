@@ -160,7 +160,7 @@ GridSearchCV() was also used to find the optimal parameters for these models.
 
 
  ## Final Remarks
- Overall, the 5 features selection and metric scores illustrate that the model is a good starting point predicting premier league final points based off of mid-season features.
+ Overall, the 5 features selected and metric scores illustrate that the model is a good starting point predicting premier league final points based off of mid-season features.
 
  Future development of the model would be to use unseen 25/26 premier league data at **19 matches played**, and assess at the end of the season how accurately wthe model predicts each teams final points and subsequently final position.
 
