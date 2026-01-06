@@ -139,4 +139,20 @@ coef_df = pd.DataFrame({
 The regression coefficients for the base OLS linear regression model can be seen below. Form index appears as if its the largest predictor but that is not the case. Form index was scaled 0-1 so in reality a team with a perfect form index are predicted to finish 3 points higher than a team with a 0 form index if everything else was equal.
 
 Mid-season points was the biggest predictor, as for every midseason point gained, final points are expected to increase by 1.06.
+![Screenshot: regression coefficients](images/coefficients.png) 
+
+### Actual Vs Predicted Plot
+![Screenshot: Actual V Predicted](images/actual_v_predicted.png) 
+
+
+### Comparing Algorithms and Metrics
+Alternative regression models were explored. These included ridge and lasso regression which use regularisation techniques to prevent overfitting through either shrinking coefficients or removing features from models. Elastic Net, a combination of the two was also explored and as was Random Forest Regressor, an ensemble method.
+
+GridSearchCV() was also used to find the optimal parameters for these models.
+
+![Screenshot: Alternative models](images/regression_table.png) 
+
+
+
+
 
