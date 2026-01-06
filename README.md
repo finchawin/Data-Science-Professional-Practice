@@ -72,7 +72,9 @@ Whilst a correlation barplot was used to assess which features most strongly cor
 ## Machine Learning
 
 ### Train and test split.
-The model was then split using sci-kitlearn. Of the 200 rows (10 seasons 20 teams), **80%  was for training and 20% for testing**
+The model was then split using sci-kitlearn. Of the 200 rows (10 seasons 20 teams), **80%  was for training and 20% for testing**.
+
+A specific random seed was chosen for reproducability.
 
 ```python
 #Splitting into X and Y (features and target)
@@ -134,4 +136,7 @@ coef_df = pd.DataFrame({
 
 
 ## Results
+The regression coefficients for the base OLS linear regression model can be seen below. Form index appears as if its the largest predictor but that is not the case. Form index was scaled 0-1 so in reality a team with a perfect form index are predicted to finish 3 points higher than a team with a 0 form index if everything else was equal.
+
+Mid-season points was the biggest predictor, as for every midseason point gained, final points are expected to increase by 1.06.
 
