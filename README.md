@@ -165,5 +165,11 @@ GridSearchCV() was also used to find the optimal parameters for these models.
  Future development of the model would be to use unseen 25/26 premier league data at **19 matches played**, and assess at the end of the season how accurately wthe model predicts each teams final points and subsequently final position.
 
 
+ ## Bonus
+ An iteration of the model was developed, holding out the 24/25 season as test data and training on all prior seasons to see how well the model would predict final points and position based on the 5 selected features. Whilst model performance dropped to a 0.8 adjusted R-Squared score, it was still able to predict **3 out of the top 4** correctly and **all 3 relegated teams** with a Mean absolute position error of **2.1 positions**.
+
+ ![Screenshot: Predicted Vs actual positions](images/dumbell.png) 
+
+
 
 
