@@ -154,6 +154,15 @@ GridSearchCV() was also used to find the optimal parameters for these models.
 
 ![Screenshot: Alternative models](images/regression_table.png) 
 
+ In terms of model performance, Ridge regression marginally outperformed outher models, however the differences are not material. Random Forest showed signs of overfitting with a big discrepancy between train and test Adjusted R-Squared scores, indicating it did not generalise aswell as the other models to unseen data.
+
+ The original regression models score of **0.87** indicates the model explains 87% of the variance in final points. MAE and RMSE scores illustrate that on average, the model predictions are  **+/- 4.9 and 6.2** points out from actual final points. A higher RMSE than MAE suggests the model struggles with certain outliers when predicting final points.
+
+
+ ## Final Remarks
+ Overall, the 5 features selection and metric scores illustrate that the model is a good starting point predicting premier league final points based off of mid-season features.
+
+ Future development of the model would be to use unseen 25/26 premier league data at **19 matches played**, and assess at the end of the season how accurately wthe model predicts each teams final points and subsequently final position.
 
 
 
