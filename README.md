@@ -25,7 +25,9 @@ The dataframe was then transfomred into a team-centric format, creating two data
 
 Match numbers were then assigned so the data could be filtered to 19 matches played (midseason) using a `pd.groupby().cumcount() +1`.
 The dataframe was then filtered to 19 matches played and midseason statistics were calculated using a `pd.groupby().agg('sum')`. Sanity checks were conducted to ensure there were 38 games per team per season.
+
 ![Screenshot: filtering to 19_mp](images/filtering_19.png) 
+
 ![Screenshot: Group by](images/group_by.png) 
 
 ### Feature engineering
