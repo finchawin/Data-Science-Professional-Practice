@@ -3,17 +3,17 @@
 ## Executive Summary
 Historically, football predcitions have relied on subjective analysis by journalists and pundits, but recently more and more studies have incorporated Machine Learning algorithms to predict match outcomes and final standings of leagues and tournaments.
 
-This Study utilises match-level data sourced from ["Footballdata.co.uk"](https://www.football-data.co.uk/) to assess which mid-season features best predict final points, using a OLS linear regression model.
+This study utilises match-level data sourced from ["Footballdata.co.uk"](https://www.football-data.co.uk/) to assess which mid-season features best predict final points, using a OLS linear regression model.
 
-After selecting 5-midseason features and conducting hyperparameter tuning, Ridge regression was found to be the best model for predicting points, though the difference between models was  not material.
+After selecting 5-midseason features and conducting hyperparameter tuning, Ridge regression was found to be the best model for predicting points, though the difference between models was not material.
 
 ### Looking forward
-Future model development would benefit from including more advanced football statistics such as expected goals XG, which may enhance predictive power of the model. 
+Future model development would benefit from including more advanced football statistics such as expected goals **(XG)**, which may enhance predictive power of the model. 
 <!-- This is a comment -->
 
 ## Data Preprocessing
-Data was extracted for Premier League Seasons from 2015/16 - 2024/25 using the `pd.read_csv()` function and then concatenated into a single dataframe using `pd.concat()`.
-Column consistency checks were performed to ensure that there would not be two columns that mean the same thing after concatenation. 
+Data was extracted for Premier League Seasons **2015/16 to 2024/25** using the `pd.read_csv()` function and then concatenated into a single dataframe using `pd.concat()`.
+Column consistency checks were performed to ensure that there would not be two columns that meant the same thing after concatenation. 
 
 The `len()` method was then utilised to ensure each season had 380 rows (The number of games in a premier league season).
 
@@ -31,7 +31,7 @@ The dataframe was then filtered to 19 matches played and midseason statistics we
 ![Screenshot: Group by](images/group_by.png) 
 
 ### Feature engineering
-Additional features were engineered such as goal difference (Goals Scored - Goals Conceded) and a form index which calculated a teams form on a scale of 0-1 based off of its last 5 fixtures 
+Additional features were engineered such as goal difference (Goals Scored - Goals Conceded) and a form index, which calculated a teams form on a scale of 0-1 based off of its last 5 fixtures. 
 
 ```python
 # filter to first half of the season
@@ -58,7 +58,7 @@ Histogram plots were used to assess the distribution of mid-season features and 
 
 ![Screenshot: Histograms](images/Histograms.png) 
 
-Whilst a correlation barplot was used to assess which features most strongly correlated with final points. Correlation between features was also assessed to reduce the implications of multicollinearity and remove redundant features that  would have let to overfitting.
+Whilst a correlation barplot was used to assess which features most strongly correlated with final points. Correlation between features was also assessed to reduce the implications of multicollinearity and remove redundant features that were too highly correlated to eachother that would have led to overfitting.
 
 ![Screenshot: correlation_plot](images/correlation_plot.png) 
 
@@ -73,8 +73,8 @@ Whilst a correlation barplot was used to assess which features most strongly cor
 
 ## Machine Learning
 
-### Train and test split.
-The model was then split using sci-kitlearn. Of the 200 rows (10 seasons 20 teams), **80%  was for training and 20% for testing**.
+### Train and test split
+The model was then split using sci-kitlearn. Of the 200 rows in the dataftame (10 seasons, 20 teams), **80%  was allocated for training and 20% for testing**.
 
 A specific random seed was chosen for reproducability.
 
@@ -103,7 +103,7 @@ print("\nLinear Regression model fitted.")
 The following metrics were used to assess model performance:
 **Adjusted R-squared:** Measures how much of the variance in final points is explained by the model and penalises the inclusion of unecessary variables.
 
-**Root Mean Squared Error**: Answers on average how many points is the models prediction wrong by?
+**Root Mean Squared Error**: Answers on average how many points are the models prediction wrong by?
 
 **Mean absolute error**: Measures the absolute difference between predicted and final points. A key difference to RMSE is that it treats differences equally, meaning its not as influence by outliers.
 
@@ -138,7 +138,7 @@ coef_df = pd.DataFrame({
 
 
 ## Results
-The regression coefficients for the base OLS linear regression model can be seen below. Form index appears as if its the largest predictor but that is not the case. Form index was scaled 0-1 so in reality a team with a perfect form index are predicted to finish 3 points higher than a team with a 0 form index if everything else was equal.
+The regression coefficients for the base OLS linear regression model can be seen below. Form index appears as if it's the largest predictor but that is not the case. Form index was scaled 0-1. So in reality a team with a perfect form index are predicted to finish 3 points higher than a team with a 0 form index if everything else was equal.
 
 Mid-season points was the biggest predictor, as for every midseason point gained, final points are expected to increase by 1.06.
 ![Screenshot: regression coefficients](images/coefficients.png) 
@@ -148,7 +148,7 @@ Mid-season points was the biggest predictor, as for every midseason point gained
 
 
 ### Comparing Algorithms and Metrics
-Alternative regression models were explored. These included ridge and lasso regression which use regularisation techniques to prevent overfitting through either shrinking coefficients or removing features from models. Elastic Net, a combination of the two was also explored and as was Random Forest Regressor, an ensemble method.
+Alternative regression models were explored. These included ridge and lasso regression which use regularisation techniques to prevent overfitting through either shrinking coefficients or removing features from models. Elastic Net, a combination of the two was also explored, as was Random Forest Regressor, an ensemble method.
 
 GridSearchCV() was also used to find the optimal parameters for these models.
 
