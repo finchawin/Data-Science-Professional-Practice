@@ -22,7 +22,11 @@ The `len()` method was then utilised to ensure each season had 380 rows (The num
 ![Screenshot: Row checks](images/row_checks.png) 
 
 ### Building Team centric table
-The dataframe was then transfomred into a team-centric format, creating two dataframes using `pd.DataFrame` one for home and one for away. A dictionary was used to map points (3 for a win , 1 for a draw and 0 for a loss) and columns were renamed to reduce ambguity.
+The dataframe was then transformed into a team-centric format, creating two dataframes using `pd.DataFrame` one for home and one for away. A dictionary was used to map points (3 for a win , 1 for a draw and 0 for a loss) and columns were renamed to reduce ambguity.
+Below is an example of the away-centric dataframe, but thr same methodology was applied to create the home one.
+```python
+away_pts_map = {"A": 3, "D": 1, "H": 0}
+```
 ![Screenshot: Team centric](images/team_centric.png) 
 
 Match numbers were then assigned so the data could be filtered to 19 matches played (midseason) using a `pd.groupby().cumcount() +1`.
