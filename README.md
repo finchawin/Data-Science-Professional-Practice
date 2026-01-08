@@ -5,6 +5,8 @@ Historically, football predcitions have relied on subjective analysis by journal
 
 This study utilises match-level data sourced from ["Footballdata.co.uk"](https://www.football-data.co.uk/) to assess which mid-season features best predict final points, using a OLS linear regression model.
 
+Linear regression was chosen as a suitable model as all 5 features were continuous, as well as the target variable final points, compared to classification models such as logistic regression which are used to predict binary outcomes.
+
 After selecting 5-midseason features and conducting hyperparameter tuning, Ridge regression was found to be the best model for predicting points, though the difference between models was not material.
 
 ### Looking forward
